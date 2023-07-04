@@ -5,7 +5,6 @@ workflows:
       groups:
         - shorebird
       flutter: stable
-    instance_type: windows_x2
     scripts:
       - name: 🐦 Setup Shorebird
         script: |
