@@ -1,0 +1,19 @@
+workflows:
+  example:
+    name: Example
+    environment:
+      groups:
+        - shorebird
+      flutter: stable
+    scripts:
+      - name: 🐦 Setup Shorebird
+        script: |
+          # Mac/Linux
+          curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sSf | bash
+
+          # If you are using Windows, use the following commands:
+          #
+          # Set-ExecutionPolicy RemoteSigned -scope CurrentUser # Needed to execute remote scripts
+          # iwr -UseBasicParsing 'https://raw.githubusercontent.com/shorebirdtech/install/main/install.ps1'|iex
+      - name: 🚀 Shorebird Patch
+        script: shorebird patch android --force
