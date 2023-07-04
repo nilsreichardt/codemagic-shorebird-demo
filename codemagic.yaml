@@ -17,7 +17,7 @@ workflows:
           Set-ExecutionPolicy RemoteSigned -scope CurrentUser # Needed to execute remote scripts
           iwr -UseBasicParsing 'https://raw.githubusercontent.com/shorebirdtech/install/main/install.ps1'|iex
 
-          $env:Path += ";C:\Users\builder\.shorebird\bin"
+          Add-Content -Path $env:CM_ENV -Value PATH="/Users/builder/.shorebird/bin:$PATH"
           echo $env:Path
           # Only for Mac/Linux
           # echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
