@@ -18,6 +18,7 @@ workflows:
           iwr -UseBasicParsing 'https://raw.githubusercontent.com/shorebirdtech/install/main/install.ps1'|iex
 
           $env:Path += ";C:\Users\builder\.shorebird\bin"
+          echo $env:Path
           # Only for Mac/Linux
           # echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
       - name: 🚀 Shorebird Patch
