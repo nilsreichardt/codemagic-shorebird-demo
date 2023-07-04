@@ -1,4 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Required for Shorebird -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:label="shorebird_codemagic_demo"
         android:name="${applicationName}"
