@@ -5,18 +5,19 @@ workflows:
       groups:
         - shorebird
       flutter: stable
+    instance_type: windows_x2
     scripts:
       - name: 🐦 Setup Shorebird
         script: |
           # Mac/Linux
-          curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sSf | bash
+          # curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sSf | bash
 
           # If you are using Windows, use the following commands:
           #
-          # Set-ExecutionPolicy RemoteSigned -scope CurrentUser # Needed to execute remote scripts
-          # iwr -UseBasicParsing 'https://raw.githubusercontent.com/shorebirdtech/install/main/install.ps1'|iex
+          Set-ExecutionPolicy RemoteSigned -scope CurrentUser # Needed to execute remote scripts
+          iwr -UseBasicParsing 'https://raw.githubusercontent.com/shorebirdtech/install/main/install.ps1'|iex
 
           # Only for Mac/Linux
-          echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
+          # echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
       - name: 🚀 Shorebird Patch
         script: shorebird patch android --force
