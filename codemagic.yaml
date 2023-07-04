@@ -15,5 +15,7 @@ workflows:
           #
           # Set-ExecutionPolicy RemoteSigned -scope CurrentUser # Needed to execute remote scripts
           # iwr -UseBasicParsing 'https://raw.githubusercontent.com/shorebirdtech/install/main/install.ps1'|iex
+
+          echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
       - name: 🚀 Shorebird Patch
         script: shorebird patch android --force
