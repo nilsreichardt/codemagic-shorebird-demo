@@ -1,5 +1,5 @@
 workflows:
-  example:
+  macos-linux-example:
     name: Example
     environment:
       groups:
@@ -8,15 +8,47 @@ workflows:
     scripts:
       - name: 🐦 Setup Shorebird
         script: |
-          # Mac/Linux
+          # Install Shorebird
           curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sSf | bash
 
-          # If you are using Windows, use the following commands:
-          #
-          # Set-ExecutionPolicy RemoteSigned -scope CurrentUser # Needed to execute remote scripts
-          # iwr -UseBasicParsing 'https://raw.githubusercontent.com/shorebirdtech/install/main/install.ps1'|iex
-
-          # Only for Mac/Linux
+          # Add Shorebird to PATH
           echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
       - name: 🚀 Shorebird Patch
         script: shorebird patch android --force
+
+  advanced-example:
+    name: Advanced Example
+    environment:
+      vars:
+        TYPE: "patch" # patch or release
+      groups:
+        - shorebird
+      flutter: stable
+    instance_type: windows_x2
+    scripts:
+      - name: 🐦 Setup Shorebird
+        script: |
+          # Install Shorebird
+          curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sSf | bash
+
+          # Add Shorebird to PATH
+          echo PATH="/Users/builder/.shorebird/bin:$PATH" >> $CM_ENV
+      - name: 🙌 Shorebird Build
+        script: |
+          # If type is not patch or release, exit with error
+          if [ "$TYPE" != "patch" ] && [ "$TYPE" != "release" ]; then
+            echo "TYPE must be either patch or release"
+            exit 1
+          fi
+
+          # If type is patch, run patch command
+          if [ "$TYPE" == "patch" ]; then
+            echo "🩹 Running patch command"
+            shorebird patch android --force
+          fi
+
+          # If type is release, run release command
+          if [ "$TYPE" == "release" ]; then
+            echo "🚀 Running release command"
+            shorebird release android --force
+          fi
