@@ -1,5 +1,6 @@
 workflows:
   macos-linux-example:
+    instance_type: linux_x2
     name: Example
     environment:
       groups:
