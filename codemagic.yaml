@@ -16,3 +16,4 @@ workflows:
       - name: 🚀 Shorebird Patch
         script: |
           echo "Patching Shorebird"
+          shorebird --version
