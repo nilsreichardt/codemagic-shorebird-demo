@@ -18,4 +18,4 @@ workflows:
         script: |
           echo "Patching Shorebird"
           echo $env:CM_ENV
-          shorebird release android --force
+          # shorebird release android --force
