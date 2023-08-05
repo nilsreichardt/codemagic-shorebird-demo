@@ -13,4 +13,4 @@ workflows:
           iwr -UseBasicParsing 'https://raw.githubusercontent.com/shorebirdtech/install/main/install.ps1'|iex
       - name: 🚀 Shorebird Release
         script: |
-          & $env:shorebird release android
+          $env:shorebird release android
