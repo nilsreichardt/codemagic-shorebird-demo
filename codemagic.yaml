@@ -11,9 +11,6 @@ workflows:
         script: |
           Set-ExecutionPolicy RemoteSigned -scope CurrentUser # Needed to execute remote scripts
           iwr -UseBasicParsing 'https://raw.githubusercontent.com/shorebirdtech/install/main/install.ps1'|iex
-
-          Add-Content -Path $env:CM_ENV -Value ("PATH=C:\Users\builder\.shorebird\bin;" + $env:PATH)
-      - name: 🚀 Shorebird Patch
+      - name: 🚀 Shorebird Release
         script: |
-          echo "Patching Shorebird"
-          "C:\Users\builder\.shorebird\bin\shorebird" --version
+          & $env:shorebird release android
