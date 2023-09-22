@@ -5,7 +5,8 @@ workflows:
     environment:
       groups:
         - shorebird
-      flutter: stable
+      android_signing:
+        - codemagic
     scripts:
       - name: 🐦 Setup Shorebird
         script: |
